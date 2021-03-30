@@ -20,4 +20,4 @@ def calculate_distance_with_coordinates(latitude_1, longitude_1, latitude_2, lon
     a = math.sin(distance_latitude / 2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(distance_longitude / 2)**2
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
     distance = earth_radius * c
-    print(distance)
+    return distance

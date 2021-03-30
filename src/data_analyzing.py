@@ -32,6 +32,10 @@ for i in taxi_analyze.columns.tolist():
     print('Dans la colonne {}, nous avons {} % de valeurs manquantes'.format(i, part_missing_values))
 sp.separator()
 
+# Adding of a column which indicates the distance between the two geographic points of the entry
+
+taxi_analyze['Distance'] = dc.calculate_distance_with_coordinates(taxi_analyze['pickup_latitude'], taxi_analyze['pickup_longitude'], taxi_analyze['dropoff_latitude'], taxi_analyze['dropoff_longitude'])
+
 ### 3 - Let's check the duplicated entries ###
 
 print(taxi_analyze.duplicated().value_counts()) # Output : 'False 10000', so there are no perfect duplicated entries
