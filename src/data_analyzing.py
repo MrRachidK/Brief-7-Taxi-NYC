@@ -1,5 +1,11 @@
 # Import of all the libraries we need to analyze the data
 import pandas as pd
+import math
+import sys
+
+sys.path.insert(0, "/home/apprenant/Documents/Brief-7-Taxi-NYC")
+sys.path.insert(0, "/home/apprenant/Documents/Brief-7-Taxi-NYC")
+
 import src.separator as sp
 import src.distance_calculation as dc
 
@@ -34,7 +40,7 @@ sp.separator()
 
 # Adding of a column which indicates the distance between the two geographic points of the entry
 
-taxi_analyze['Distance'] = dc.calculate_distance_with_coordinates(taxi_analyze['pickup_latitude'], taxi_analyze['pickup_longitude'], taxi_analyze['dropoff_latitude'], taxi_analyze['dropoff_longitude'])
+# taxi_analyze['Distance'] = dc.calculate_distance_with_coordinates(taxi_analyze['pickup_latitude'], taxi_analyze['pickup_longitude'], taxi_analyze['dropoff_latitude'], taxi_analyze['dropoff_longitude'])
 
 ### 3 - Let's check the duplicated entries ###
 

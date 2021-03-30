@@ -1,7 +1,4 @@
-import sys
 import math
-
-sys.path.append("src/distance_calculation.py")
 
 def calculate_distance_with_coordinates(latitude_1, longitude_1, latitude_2, longitude_2):
     """ Function which calculates a distance between two geographic positions """
