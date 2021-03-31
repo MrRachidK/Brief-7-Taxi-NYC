@@ -85,4 +85,12 @@ sp.separator()
 ### 7 - add day columns
 taxi_analyze['week_day'] = taxi_analyze.apply(lambda x: tbd.trajectByDay(x["pickup_datetime"]), axis=1)
 
+### 8 - Remove aberant data
+
+taxi_analyze = taxi_analyze.loc[taxi_analyze["trip_duration"] < 3600*4]
+taxi_analyze = taxi_analyze.loc[taxi_analyze["trip_duration"] > 120]
+taxi_analyze = taxi_analyze.loc[taxi_analyze["Distance"] < 100]
+taxi_analyze = taxi_analyze.loc[taxi_analyze["passenger_count"] < 7]
+taxi_analyze = taxi_analyze.loc[taxi_analyze["passenger_count"] > 0]
+
 sampled_taxi_trips = taxi_analyze.to_csv('data/02_intermediate/sampled_train.csv')
