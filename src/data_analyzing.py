@@ -71,8 +71,9 @@ print(taxi_analyze.dtypes)
 sp.separator()
 
 # Conversion of the pickup_datetime and dropoff_datetime columns into datetime data type
-taxi_analyze['pickup_datetime']=pd.to_datetime(taxi_analyze['pickup_datetime'])
-taxi_analyze['dropoff_datetime']=pd.to_datetime(taxi_analyze['dropoff_datetime'])
+taxi_analyze['pickup_datetime'] = pd.to_datetime(taxi_analyze['pickup_datetime'])
+taxi_analyze['dropoff_datetime'] = pd.to_datetime(taxi_analyze['dropoff_datetime'])
+print(taxi_analyze.dtypes)
 
 ### 6 - Let's analyze the relevance of our database ###
 
