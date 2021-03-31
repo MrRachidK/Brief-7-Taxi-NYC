@@ -38,6 +38,18 @@ sp.separator()
 
 taxi_analyze['Distance'] = taxi_analyze.apply(lambda x: dc.calculate_distance_with_coordinates(x, 'pickup_latitude', 'pickup_longitude', 'dropoff_latitude','dropoff_longitude'), axis=1)
 
+# Adding of a column which calculates the trip duration in hours
+
+try:
+    taxi_analyze['trip_duration_hours'] = taxi_analyze['trip_duration'].apply(lambda x : round(x / 3600, ndigits=4))
+except KeyError:
+    print('No KeyError')
+
+# try: 
+#     taxi_analyze_test['trip_duration_hours'] = taxi_analyze_test['trip_duration'].apply(lambda x : x / 3600)
+# except KeyError:
+#     print('No KeyError')
+
 ### 3 - Let's check the duplicated entries ###
 
 print(taxi_analyze.duplicated().value_counts()) # Output : 'False 10000', so there are no perfect duplicated entries
