@@ -1,13 +1,8 @@
 # Import of all the libraries we need to analyze the data
 import pandas as pd
 import math
-import sys
-
-sys.path.insert(0, "/home/apprenant/Documents/Brief-7-Taxi-NYC")
-sys.path.insert(0, "/home/apprenant/Documents/Brief-7-Taxi-NYC")
-
-import src.separator as sp
-import src.distance_calculation as dc
+import separator as sp
+import distance_calculation as dc
 
 ### 1 - Import and informations provided by the database ###
 
@@ -73,5 +68,4 @@ sp.separator()
 print(sorted(taxi_analyze['store_and_fwd_flag'].unique()))
 sp.separator()
 
-
-sampled_taxi_trips = taxi_analyze.to_csv('/home/apprenant/Documents/Brief-7-Taxi-NYC/data/02_intermediate/sampled_train.csv')
+sampled_taxi_trips = taxi_analyze.to_csv('data/02_intermediate/sampled_train.csv')
