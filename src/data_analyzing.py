@@ -11,8 +11,8 @@ import src.distance_calculation as dc
 
 ### 1 - Import and informations provided by the database ###
 
-# Import of the database
-taxi_analyze = pd.read_csv('data/01_raw/train.csv').sample(n=10000)
+# Import of the databases
+taxi_analyze = pd.read_csv('data/01_raw/train.csv')
 
 # Some infos about the database (columns and shape of database)
 print('Nous étudions une base de données de {} lignes et de {} colonnes.'.format(taxi_analyze.shape[0], taxi_analyze.shape[1]))
@@ -41,6 +41,18 @@ sp.separator()
 # Adding of a column which indicates the distance between the two geographic points of the entry
 
 taxi_analyze['Distance'] = taxi_analyze.apply(lambda x: dc.calculate_distance_with_coordinates(x, 'pickup_latitude', 'pickup_longitude', 'dropoff_latitude','dropoff_longitude'), axis=1)
+
+# Adding of a column which calculates the trip duration in hours
+
+try:
+    taxi_analyze['trip_duration_hours'] = taxi_analyze['trip_duration'].apply(lambda x : round(x / 3600, ndigits=4))
+except KeyError:
+    print('No KeyError')
+
+# try: 
+#     taxi_analyze_test['trip_duration_hours'] = taxi_analyze_test['trip_duration'].apply(lambda x : x / 3600)
+# except KeyError:
+#     print('No KeyError')
 
 ### 3 - Let's check the duplicated entries ###
 
@@ -74,4 +86,4 @@ print(sorted(taxi_analyze['store_and_fwd_flag'].unique()))
 sp.separator()
 
 
-sampled_taxi_trips = taxi_analyze.to_csv('/home/apprenant/Documents/Brief-7-Taxi-NYC/data/02_intermediate/sampled_train.csv')
+modified_taxi_trips_train = taxi_analyze.to_csv('/home/apprenant/Documents/Brief-7-Taxi-NYC/data/02_intermediate/modified_train.csv')
