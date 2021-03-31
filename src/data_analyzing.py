@@ -40,7 +40,7 @@ sp.separator()
 
 # Adding of a column which indicates the distance between the two geographic points of the entry
 
-# taxi_analyze['Distance'] = dc.calculate_distance_with_coordinates(taxi_analyze['pickup_latitude'], taxi_analyze['pickup_longitude'], taxi_analyze['dropoff_latitude'], taxi_analyze['dropoff_longitude'])
+taxi_analyze['Distance'] = taxi_analyze.apply(lambda x: dc.calculate_distance_with_coordinates(x, 'pickup_latitude', 'pickup_longitude', 'dropoff_latitude','dropoff_longitude'), axis=1)
 
 ### 3 - Let's check the duplicated entries ###
 
