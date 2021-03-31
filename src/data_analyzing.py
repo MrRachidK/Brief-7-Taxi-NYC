@@ -1,17 +1,13 @@
 # Import of all the libraries we need to analyze the data
 import pandas as pd
 import math
-import sys
-
-sys.path.insert(0, "/home/apprenant/Documents/Brief-7-Taxi-NYC")
-sys.path.insert(0, "/home/apprenant/Documents/Brief-7-Taxi-NYC")
-
-import src.separator as sp
-import src.distance_calculation as dc
+import separator as sp
+import distance_calculation as dc
+import traject_by_day as tbd
 
 ### 1 - Import and informations provided by the database ###
 
-# Import of the databases
+# Import of the database
 taxi_analyze = pd.read_csv('data/01_raw/train.csv')
 
 # Some infos about the database (columns and shape of database)
@@ -86,5 +82,7 @@ sp.separator()
 print(sorted(taxi_analyze['store_and_fwd_flag'].unique()))
 sp.separator()
 
+### 7 - add day columns
+taxi_analyze['week_day'] = taxi_analyze.apply(lambda x: tbd.trajectByDay(x["pickup_datetime"]), axis=1)
 
-modified_taxi_trips_train = taxi_analyze.to_csv('/home/apprenant/Documents/Brief-7-Taxi-NYC/data/02_intermediate/modified_train.csv')
+sampled_taxi_trips = taxi_analyze.to_csv('data/02_intermediate/sampled_train.csv')
